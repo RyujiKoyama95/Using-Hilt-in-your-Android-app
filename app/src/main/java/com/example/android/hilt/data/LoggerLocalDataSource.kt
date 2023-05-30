@@ -21,10 +21,13 @@ import android.os.Looper
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Data manager class that handles data manipulation between the database and the UI.
  */
+// @Singletonを付けることでこのアプリケーションコンテナは常に同じインスタンスを提供するようになる
+@Singleton
 class LoggerLocalDataSource @Inject constructor(private val logDao: LogDao) {
 
     private val executorService: ExecutorService = Executors.newFixedThreadPool(4)
