@@ -30,14 +30,20 @@ import com.example.android.hilt.R
 import com.example.android.hilt.data.Log
 import com.example.android.hilt.data.LoggerLocalDataSource
 import com.example.android.hilt.util.DateFormatter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Fragment that displays the database logs.
  */
+// @AndroidEntryPointをクラスに付けることでクラスのライフサイクルに沿った依存関係コンテナを作成し、
+// インスタンスをLogsFragmentに注入できるようになる
+@AndroidEntryPoint
 class LogsFragment : Fragment() {
 
-    private lateinit var logger: LoggerLocalDataSource
-    private lateinit var dateFormatter: DateFormatter
+    // 注入したいフィールドに@Injectを付けることで、LogsFragmentに様々な型のインスタンスを注入できる
+    @Inject private lateinit var logger: LoggerLocalDataSource
+    @Inject private lateinit var dateFormatter: DateFormatter
 
     private lateinit var recyclerView: RecyclerView
 
