@@ -19,7 +19,7 @@ package com.example.android.hilt
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
-// @HiltAndroidAppを付けることでアプリのライフサイクルにアタッチされたコンテナを追加できる
+// @HiltAndroidAppを付けることでアプリのライフサイクルにアタッチされたコンテナを作成できる
 @HiltAndroidApp
 class LogApplication : Application() {
 
