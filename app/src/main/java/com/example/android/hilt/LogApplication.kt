@@ -22,11 +22,4 @@ import dagger.hilt.android.HiltAndroidApp
 // @HiltAndroidAppを付けることでアプリのライフサイクルにアタッチされたコンテナを作成できる
 @HiltAndroidApp
 class LogApplication : Application() {
-
-    lateinit var serviceLocator: ServiceLocator
-
-    override fun onCreate() {
-        super.onCreate()
-        serviceLocator = ServiceLocator(applicationContext)
-    }
 }
