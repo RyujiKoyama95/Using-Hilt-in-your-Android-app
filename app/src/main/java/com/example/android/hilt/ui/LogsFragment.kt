@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.hilt.LogApplication
 import com.example.android.hilt.R
 import com.example.android.hilt.data.Log
+import com.example.android.hilt.data.LoggerDataSource
 import com.example.android.hilt.data.LoggerLocalDataSource
 import com.example.android.hilt.util.DateFormatter
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +44,7 @@ class LogsFragment : Fragment() {
 
     // 注入したいフィールドに@Injectを付けることで、LogsFragmentに様々な型のインスタンスを注入できる
     // Hiltによって注入されたフィールドはprivateにできない
-    @Inject lateinit var logger: LoggerLocalDataSource
+    @Inject lateinit var logger: LoggerDataSource
     @Inject lateinit var dateFormatter: DateFormatter
 
     private lateinit var recyclerView: RecyclerView
