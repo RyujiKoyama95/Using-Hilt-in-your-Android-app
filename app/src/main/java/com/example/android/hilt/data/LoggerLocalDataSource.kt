@@ -28,14 +28,16 @@ import javax.inject.Singleton
  */
 // @Singletonを付けることでこのアプリケーションコンテナは常に同じインスタンスを提供するようになる
 @Singleton
-class LoggerLocalDataSource @Inject constructor(private val logDao: LogDao) {
+class LoggerLocalDataSource @Inject constructor(
+    private val logDao: LogDao
+    ): LoggerDataSource {
 
     private val executorService: ExecutorService = Executors.newFixedThreadPool(4)
     private val mainThreadHandler by lazy {
         Handler(Looper.getMainLooper())
     }
 
-    fun addLog(msg: String) {
+    override fun addLog(msg: String) {
         executorService.execute {
             logDao.insertAll(
                 Log(
@@ -46,14 +48,14 @@ class LoggerLocalDataSource @Inject constructor(private val logDao: LogDao) {
         }
     }
 
-    fun getAllLogs(callback: (List<Log>) -> Unit) {
+    override fun getAllLogs(callback: (List<Log>) -> Unit) {
         executorService.execute {
             val logs = logDao.getAll()
             mainThreadHandler.post { callback(logs) }
         }
     }
 
-    fun removeLogs() {
+    override fun removeLogs() {
         executorService.execute {
             logDao.nukeTable()
         }
