@@ -34,10 +34,6 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class AppTest {
 
-    @After
-    fun tearDown() {
-    }
-
     @Test
     fun happyPath() {
         ActivityScenario.launch(MainActivity::class.java)
